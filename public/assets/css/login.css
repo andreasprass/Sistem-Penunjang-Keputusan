@@ -5,7 +5,7 @@
 }
 body{
     height: 100vh;
-    background: linear-gradient(to top , #27C6D9, #41EBFF,#009FB2 );
+    background: linear-gradient(to top , #27C6D9, #41EBFF,#008a99 );
 }
 header{
     width: 100%;
@@ -17,28 +17,33 @@ nav{
 main{
     height: 85vh;
 }
-main div{
+.main-wrap{
     height: 85vh;
 }
 .hero{
     width: 85%;
 }
 .hero-wrap{
-    height: 40%;
+    height: 50%;
 }
 .div1{
-    width: 70%;
+    width: 60%;
 }
 .div2{
-    width: 30%;
+    width: 40%;
+    padding: 3rem;
 }
 .form-box{
     width: 100%;
-    height: 45vh;
+    height: min-content;
     background-color: white;
+}
+.invalid-feedback{
+    height: max-content;
 }
 input, button{
     width: 6rem;
+    margin-bottom: 15px !important;
     height: 3.5rem;
 }
 

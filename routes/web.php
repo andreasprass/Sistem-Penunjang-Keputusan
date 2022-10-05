@@ -15,7 +15,15 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-Route::get('/',[DashboardController::class, 'index']);
+Route::get('/',[DashboardController::class, 'index'])->middleware('auth');
+Route::get('/home',[DashboardController::class, 'index'])->middleware('auth');
+// Route::get('/', function() {
+//     return view('tes');
+// });
 
-Route::get('/login',[LoginController::class, 'login']);
-Route::get('/register',[LoginController::class, 'register']);
+
+Route::get('/login',[LoginController::class, 'login'])->name('login')->middleware('guest');
+Route::post('/login',[LoginController::class, 'validation'])->name('login')->middleware('guest');
+Route::post('/logout',[LoginController::class, 'logout'])->name('logout')->middleware('auth');
+Route::get('/register',[LoginController::class, 'register'])->name('register')->middleware('guest');
+Route::post('/register',[LoginController::class, 'store'])->name('register')->middleware('guest');

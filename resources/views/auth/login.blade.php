@@ -1,9 +1,9 @@
 @extends('auth.layout.layouting',[
-    'title' => 'Login'
+    'title' => 'Masuk'
 ])
 @section('main')
     <main>
-        <div class="container d-flex">
+        <div class="container d-flex main-wrap">
             <div class="div1 d-flex flex-column justify-content-center">
                 <div class="hero-wrap">
                     <h2 class="hero text-wrap">Sistem Informasi Pendukung  Keputusan Dengan Metode Promethee</h2>
@@ -17,9 +17,25 @@
             <div class="div2 d-flex align-items-center justify-content-center">
                 <div class="form-box p-4 rounded">
                     <h5 class="mb-4 mt-3 text-center">Masuk Akun!</h5>
-                    <form >
-                        <input type="text" class="form-control rounded-pill mb-4" placeholder="Email">
-                        <input type="password" class="form-control rounded-pill mb-4 " placeholder="Password">
+                    @if(session()->has('success'))
+                    <div class="alert h-100 alert-success alert-dismissible rounded-pill fade show" role="alert">
+                        {{ session('success') }}
+                    </div>
+                    @endif
+                    <form action="{{ route('login') }}" method="post">
+                        @csrf
+                        <input type="email" name="email" id="email" class="form-control rounded-pill @error('email') is-invalid mb-0 @enderror" placeholder="Email" >
+                        @error('email')
+                        <div class="invalid-feedback mb-3 ms-2">
+                        {{ $message }}
+                        </div>
+                        @enderror
+                        <input type="password" name="password" id="password"class="form-control rounded-pill  @error('password') is-invalid mb-0 @enderror" placeholder="Password">
+                        @error('password')
+                        <div class="invalid-feedback mb-3 ms-2">
+                        {{ $message }}
+                        </div>
+                        @enderror
                         <button type="submit" class="form-control rounded-pill mb-4 btn bg-info text-white">Masuk</button>
                     </form>
                 </div>

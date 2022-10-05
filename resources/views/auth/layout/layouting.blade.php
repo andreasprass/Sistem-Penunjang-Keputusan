@@ -16,8 +16,9 @@
             <div>
                 <h3>Sistem Penunjang Keputusan</h3>
             </div>
-            <div>
-                <h5>Daftar</h5>
+            <div class="d-flex">
+                <h5><a href="login" class="me-4 text-decoration-none text-dark">Masuk</a></h5>
+                <h5 class="me-5"><a href="register" class="text-decoration-none text-dark">Daftar</a></h5>
             </div>
         </nav>
     </header>
