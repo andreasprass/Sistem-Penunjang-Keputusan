@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard</title>
+    <title>{{ $title }}</title>
  
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
@@ -87,14 +87,50 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                         with font-awesome or any other icon font library -->
-                        <li class="nav-item">
-                            <a href="{{ route('home') }}" class="nav-link">
-                                <i class="nav-icon fas fa-users"></i>
-                                <p>
-                                    Data User
-                                </p>
+                        <li class="nav-item menu-is-opening menu-open">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-layer-group"></i>
+                              <p>
+                                Management
+                                <i class="right fas fa-angle-left"></i>
+                              </p>
                             </a>
+                            <ul class="nav nav-treeview" style="display: block;">
+                                <li class="nav-item">
+                                    <a href="{{ route('home') }}" class="nav-link {{ ($active === "User") ? 'active' : ''  }}">
+                                        <i class="nav-icon fas fa-user"></i>
+                                        <p>
+                                            Data User
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('home') }}" class="nav-link">
+                                        <i class="nav-icon fas fa-sitemap"></i>
+                                        <p>
+                                            Data Position
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('home') }}" class="nav-link">
+                                        <i class="nav-icon fas fa-users"></i>
+                                        <p>
+                                            Data Division
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('home') }}" class="nav-link">
+                                        <i class="nav-icon fas fa-building"></i>
+                                        <p>
+                                            Data Department
+                                        </p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
+                        <li class="nav-header">ASSESMENT</li>
                         <li class="nav-item">
                             <a href="pages/widgets.html" class="nav-link">
                                 <i class="nav-icon fas fa-list-ul"></i>
@@ -126,30 +162,7 @@
             <!-- /.sidebar -->
         </aside>
 
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper" style="min-height: 1313px;">
-            <!-- Content Header (Page header) -->
-            <div class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1 class="m-0">{{ $dashboard_title }}</h1>
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-sm-6">
-        
-                            <button class="btn btn-primary float-sm-right">{{ $button_desc }} <i class="fas fa-plus m-sm-2"></i></button>
-                        </div>
-                        <!-- /.col -->
-                    </div>
-                    <!-- /.row -->
-                </div>
-                <!-- /.container-fluid -->
-            </div>
-            <!-- /.content-header -->
-
-            @yield('main')
-        </div>
+        @yield('main')
 
         <!-- Main Footer -->
         <footer class="main-footer">
@@ -161,16 +174,18 @@
     </div>
     <!-- ./wrapper -->
 
-  
-  <!-- REQUIRED SCRIPTS -->
+    @yield('modal')
+
+    <!-- REQUIRED SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <!-- jQuery -->
     <script src="{{ asset('assets/bootstrap/plugins/jquery/jquery.min.js')}}"></script>
-    <!-- Bootstrap -->
-    <script src="{{ asset('assets/bootstrap/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    {{-- <!-- Bootstrap -->
+    <script src="{{ asset('assets/bootstrap/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script> --}}
     <!-- AdminLTE -->
     <script src="{{ asset('assets/bootstrap/dist/js/adminlte.js')}}"></script>
     <!-- Bootstrap 4 -->
-    <script src="{{ asset('assets/bootstrap/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    {{-- <script src="{{ asset('assets/bootstrap/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script> --}}
     <!-- DataTables  & Plugins -->
     <script src="{{ asset('assets/bootstrap/plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{ asset('assets/bootstrap/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
@@ -187,10 +202,15 @@
     <!-- Page specific script -->
     <script>
     $(function () {
-        $("#example1").DataTable({
+        $("#table1").DataTable({
         "responsive": true, "lengthChange": false, "autoWidth": false,
         "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        }).buttons().container().appendTo('#table1_wrapper .col-md-6:eq(0)');
+
+        $("#table2").DataTable({
+        "responsive": true, "lengthChange": false, "autoWidth": false,
+        "buttons": ["copy", "csv", "excel", "print", "colvis"]
+        }).buttons().container().appendTo('#table2_wrapper .col-md-6:eq(0)');
     });
     </script>
 </body>

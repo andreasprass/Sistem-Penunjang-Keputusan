@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Position;
 use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -24,6 +25,11 @@ class User extends Authenticatable
     protected $keyType = 'string';
     public $incrementing = false;
     
+    // Eloquent Relational Method
+    public function position(){
+        return $this->belongsTo(Position::class);
+    }
+
     protected $fillable = [
         'user_id',
         'name',

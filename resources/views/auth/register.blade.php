@@ -19,13 +19,13 @@
                     <h5 class="mb-4 mt-3 text-center">Daftar Akun!</h5>
                     <form action="{{ route('register') }}" method="post">
                         @csrf
-                        <input type="text" name="name" id="name" class="form-control rounded-pill @error('name') is-invalid mb-0 @enderror" placeholder="Nama" >
+                        <input type="text" name="name" id="name" class="form-control rounded-pill @error('name') is-invalid mb-0 @enderror" placeholder="Nama" value="{{ old('name') }}">
                         @error('name')
                         <div class="invalid-feedback mb-3 ms-2">
                         {{ $message }}
                         </div>
                         @enderror
-                        <input type="email" name="email" id="email" class="form-control rounded-pill @error('email') is-invalid mb-0 @enderror" placeholder="Email" >
+                        <input type="email" name="email" id="email" class="form-control rounded-pill @error('email') is-invalid mb-0 @enderror" placeholder="Email" value="{{ old('email') }}">
                         @error('email')
                         <div class="invalid-feedback mb-3 ms-2">
                         {{ $message }}

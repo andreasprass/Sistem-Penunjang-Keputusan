@@ -24,7 +24,7 @@
                     @endif
                     <form action="{{ route('login') }}" method="post">
                         @csrf
-                        <input type="email" name="email" id="email" class="form-control rounded-pill @error('email') is-invalid mb-0 @enderror" placeholder="Email" >
+                        <input type="email" name="email" id="email" class="form-control rounded-pill @error('email') is-invalid mb-0 @enderror" placeholder="Email" value="{{ old('email') }}" >
                         @error('email')
                         <div class="invalid-feedback mb-3 ms-2">
                         {{ $message }}
