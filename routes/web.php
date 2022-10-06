@@ -16,7 +16,7 @@ use App\Http\Controllers\DashboardController;
 */
 
 Route::get('/',[DashboardController::class, 'index'])->middleware('auth');
-Route::get('/home',[DashboardController::class, 'index'])->middleware('auth');
+Route::get('/home',[DashboardController::class, 'index'])->name('home')->middleware('auth');
 // Route::get('/', function() {
 //     return view('tes');
 // });
