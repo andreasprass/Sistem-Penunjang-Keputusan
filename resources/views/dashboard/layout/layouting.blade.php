@@ -19,7 +19,47 @@
     <link rel="stylesheet" href="{{ asset('assets/bootstrap/dist/css/adminlte.min.css')}}">
     <style type="text/css">
     /* Chart.js */
-    @keyframes chartjs-render-animation{from{opacity:.99}to{opacity:1}}.chartjs-render-monitor{animation:chartjs-render-animation 1ms}.chartjs-size-monitor,.chartjs-size-monitor-expand,.chartjs-size-monitor-shrink{position:absolute;direction:ltr;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1}.chartjs-size-monitor-expand>div{position:absolute;width:1000000px;height:1000000px;left:0;top:0}.chartjs-size-monitor-shrink>div{position:absolute;width:200%;height:200%;left:0;top:0}</style></head>
+    @keyframes chartjs-render-animation{from{opacity:.99}to{opacity:1}}.chartjs-render-monitor{animation:chartjs-render-animation 1ms}.chartjs-size-monitor,.chartjs-size-monitor-expand,.chartjs-size-monitor-shrink{position:absolute;direction:ltr;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1}.chartjs-size-monitor-expand>div{position:absolute;width:1000000px;height:1000000px;left:0;top:0}.chartjs-size-monitor-shrink>div{position:absolute;width:200%;height:200%;left:0;top:0}</style>
+    {{-- Ajax --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    {{-- Auto Selected Department Division Position Using Ajax --}}
+    <script>
+        $(document).ready(function(){
+            $('#departs').change(function(){
+                let id = $(this).val();
+                
+                $.ajax({
+                    type: "get",
+                    url: "/getDivs/"+id,
+                    dataType: "json",
+                    success: function(data){
+                        // console.log(data);
+                        $('#divs').html(data);
+                    },
+                    error: function(error){
+                        console.log(error);
+                    }
+                });
+            });
+            // $('#divs').change(function(){
+            //     let id = $(this).val();
+                
+            //     $.ajax({
+            //         type: "get",
+            //         url: "/getPos/"+id,
+            //         dataType: "json",
+            //         success: function(data){
+            //             // console.log(data);
+            //             $('#pos').html(data);
+            //         },
+            //         error: function(error){
+            //             console.log(error);
+            //         }
+            //     })
+            // });
+        });
+    </script>
+</head>
   <!--
   `body` tag options:
   
@@ -67,7 +107,7 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="index3.html" class="brand-link">
-                <span class="brand-text font-weight-light">HRD Division</span>
+                <span class="brand-text font-weight-light">SPK Career Network</span>
             </a>
 
             <!-- Sidebar -->
@@ -105,7 +145,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('home') }}" class="nav-link">
+                                    <a href="{{ route('position') }}" class="nav-link {{ ($active === "Position") ? 'active' : ''  }}">
                                         <i class="nav-icon fas fa-sitemap"></i>
                                         <p>
                                             Data Position
@@ -113,7 +153,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('home') }}" class="nav-link">
+                                    <a href="{{ route('home') }}" class="nav-link {{ ($active === "Division") ? 'active' : ''  }}">
                                         <i class="nav-icon fas fa-users"></i>
                                         <p>
                                             Data Division
@@ -121,7 +161,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('home') }}" class="nav-link">
+                                    <a href="{{ route('home') }}" class="nav-link {{ ($active === "Department") ? 'active' : ''  }}">
                                         <i class="nav-icon fas fa-building"></i>
                                         <p>
                                             Data Department
@@ -207,10 +247,6 @@
         "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
         }).buttons().container().appendTo('#table1_wrapper .col-md-6:eq(0)');
 
-        $("#table2").DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "print", "colvis"]
-        }).buttons().container().appendTo('#table2_wrapper .col-md-6:eq(0)');
     });
     </script>
 </body>

@@ -1,6 +1,6 @@
 @extends('dashboard.layout.layouting',[
-    'title' => 'Data User',
-    'active' => 'User'
+    'title' => 'Data Position',
+    'active' => 'Position'
 ])
 @section('main')
 <!-- Content Wrapper. Contains page content -->
@@ -10,7 +10,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Data User</h1>
+                    <h1 class="m-0">Data Position</h1>
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-6">
@@ -32,8 +32,8 @@
                     {{-- Data Table --}}
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Tabel Data User</h3>
-                            <button class="btn btn-info float-sm-right" data-bs-toggle="modal" data-bs-target="#modal_add_user">Add User <i class="fas fa-plus m-sm-1"></i></button>
+                            <h3 class="card-title">Tabel Data Position</h3>
+                            <button class="btn btn-info float-sm-right" data-bs-toggle="modal" data-bs-target="#modal_add_position">Add Position <i class="fas fa-plus m-sm-1"></i></button>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -41,22 +41,20 @@
                                 <thead>
                                     <tr>
                                         <th>No.</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Position</th>
+                                        <th>Name Position</th>
+                                        <th>Division</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($users as $user)
+                                    @foreach ($positions as $pos)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $user->name }} {!! ($user->position->id == 1) ? '<span class="badge text-yellow"><i class="fas fa-star"></i></span>' : ''!!}</td>
-                                        <td>{{ $user->email }}</td>
-                                        <td>{{ $user->position->name_pos }}</td>
+                                        <td>{{ $pos->name_pos }}</td>
+                                        <td>{{ $pos->division->name_div }}</td>
                                         <td>
                                             <a href="" class="m-sm-2"><span><i class="fas fa-info-circle text-blue"></i></span> </a>
-                                            <a href="" class="m-sm-2"><span><i class="fas fa-user-edit text-warning"></i></span></a>
+                                            <a href="" class="m-sm-2" data-bs-toggle="modal" data-bs-target="#modal_edit_position"><span><i class="fas fa-edit text-warning"></i></span></a>
                                             <a href="" class="m-sm-2"><span><i class="fas fa-trash-alt text-danger"></i></span></a>
                                         </td>
                                     </tr>
@@ -65,9 +63,8 @@
                                 <tfoot>
                                     <tr>
                                         <th>No.</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Position</th>
+                                        <th>Name Position</th>
+                                        <th>Division</th>
                                         <th>Action</th>
                                     </tr>
                                 </tfoot>
@@ -87,5 +84,6 @@
 </div>
 @endsection
 @section('modal')
-    @include('dashboard.modal.add_user')
+    @include('dashboard.modal.add_position')
+    @include('dashboard.modal.edit_position')
 @endsection

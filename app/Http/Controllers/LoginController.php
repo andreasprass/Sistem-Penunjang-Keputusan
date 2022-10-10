@@ -63,11 +63,11 @@ class LoginController extends Controller
         ]);
         
         $validatedData['password']=Hash::make($validatedData['password']);
-        
-        User::create($validatedData);
+        dd($validatedData);
+        // User::create($validatedData);
 
-        $request->session()->flash('success','Registrasi Berhasil! Silakan login!');
+        // $request->session()->flash('success','Registrasi Berhasil! Silakan login!');
         
-        return redirect('/login');
+        // return redirect('/login');
     }
 }

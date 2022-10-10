@@ -28,6 +28,34 @@
                       <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
                     </div>
                   </div>
+                  <hr class="mt-md-4">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Department</label>
+                    <select id="departs" name="departs" class="form-control" aria-label="Default select example">
+                      <option selected>Open this select menu</option>
+                      @foreach ($departs as $depart)
+                        <option value="{{ $depart->department_id}}">{{ $depart->name_depart }}</option>
+                      @endforeach
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Division</label>
+                    <select id="divs" name="divs" class="form-control" aria-label="Default select example">
+                      <option selected>Open this select menu</option>
+                      @foreach ($departs as $depart)
+                        <option value="{{ $depart->department_id}}">{{ $depart->name_depart }}</option>
+                      @endforeach
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Position</label>
+                    <select class="form-control" aria-label="Default select example">
+                      <option selected>Open this select menu</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
+                  </div>
                 </div>
                 <!-- /.card-body -->
             </div>

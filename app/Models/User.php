@@ -29,6 +29,9 @@ class User extends Authenticatable
     public function position(){
         return $this->belongsTo(Position::class);
     }
+    public function division(){
+        return $this->belongsTo(Division::class);
+    }
 
     protected $fillable = [
         'user_id',
